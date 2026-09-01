@@ -3,25 +3,25 @@ graph TD
     classDef internet fill:#F8D7DA,stroke:#DC3545,stroke-width:2px;
     classDef secureZone fill:#D1E7DD,stroke:#198754,stroke-width:2px;
     
-    %% 1. Definición de Nodos (Evita errores de sintaxis con emojis y paréntesis)
+    %% 1. Definición de Nodos
     Usuario["🌐 Usuario (Navegador/App)"]
     API["⚙️ API Gateway / Backend"]
     Admin["👨‍💻 Administrador de Red"]
     BD[("🗄️ Base de Datos SQL")]
     Auth["🔑 Servicio de Auth Externo (OAuth)"]
     
-    %% 2. Actores y Componentes (Conexiones)
+    %% 2. Conexiones
     Usuario -->|"1. Envía Credenciales (HTTPS)"| API
     Admin -->|"5. Mantenimiento (SSH)"| BD
     API -->|"2. Consulta / Guarda Usuario"| BD
     API -->|"3. Valida Token"| Auth
     
-    %% 3. Fronteras de Confianza
-    subgraph Frontera de Internet (Zona Insegura)
+    %% 3. Fronteras de Confianza (Corregido con ID y "Etiqueta")
+    subgraph Internet ["Frontera de Internet (Zona Insegura)"]
         Usuario
     end
     
-    subgraph Red Interna (Zona Segura)
+    subgraph RedInterna ["Red Interna (Zona Segura)"]
         API
         BD
         Auth
