@@ -1,23 +1,23 @@
 graph TD
-    %% Definición de Estilos y Fronteras de Confianza
+    %% Definición de Estilos
     classDef internet fill:#f9f,stroke:#333,stroke-width:2px;
     classDef secureZone fill:#bbf,stroke:#333,stroke-width:2px;
     
-    %% 1. Definición de Nodos (Se declaran por separado para evitar errores)
+    %% 1. Declaración de Nodos
     Usuario["🌐 Usuario (Navegador/App)"]
     API["⚙️ API Gateway / Backend"]
     Admin["👨‍💻 Administrador de Red"]
     BD[("🗄️ Base de Datos SQL")]
     Auth["🔑 Servicio de Auth Externo (OAuth)"]
     
-    %% 2. Flujos de Datos (Conexiones)
-    Usuario -->|"1. Envía Credenciales (HTTPS)"| API
-    Admin -->|"5. Mantenimiento (SSH)"| BD
-    API -->|"2. Consulta / Guarda Usuario"| BD
-    API -->|"3. Valida Token"| Auth
+    %% 2. Flujos de Datos (Conexiones con comillas dobles)
+    Usuario -- "1. Envía Credenciales (HTTPS)" --> API
+    Admin -- "5. Mantenimiento (SSH)" --> BD
+    API -- "2. Consulta / Guarda Usuario" --> BD
+    API -- "3. Valida Token" --> Auth
     
-    %% 3. Fronteras de Confianza (Usando la sintaxis ID ["Título"])
-    subgraph Zona_Internet ["Frontera de Internet (Insegura)"]
+    %% 3. Fronteras de Confianza
+    subgraph Zona_Insegura ["Frontera de Internet (Insegura)"]
         Usuario
     end
     
@@ -27,6 +27,6 @@ graph TD
         Auth
     end
 
-    %% Aplicar Estilos
+    %% 4. Aplicar Estilos
     class Usuario internet;
     class API,BD,Auth secureZone;
