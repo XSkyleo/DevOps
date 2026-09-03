@@ -14,18 +14,21 @@ graph TD
     classDef internet fill:#f9f,stroke:#333,stroke-width:2px;
     classDef secureZone fill:#bbf,stroke:#333,stroke-width:2px;
     
-    %% Actores y Componentes (Declaración previa)
+    %% Actores y Componentes
     Usuario["🌐 Usuario (Navegador/App)"]
     API["⚙️ API Gateway / Backend"]
     Admin["👨‍💻 Administrador de Red"]
     BD[("🗄️ Base de Datos SQL")]
     Auth["🔑 Servicio de Auth Externo (OAuth)"]
     
-    %% Flujos de Datos (Conexiones)
-    Usuario -- "1. Envía Credenciales (HTTPS)" --> API
-    Admin -- "5. Mantenimiento (SSH)" --> BD
-    API -- "2. Consulta / Guarda Usuario" --> BD
+    %% Flujos de Datos con Mapeo STRIDE integrado
+    Usuario -- "1. Envía Credenciales <br> ⚠️ T-01: Spoofing <br> ⚠️ T-04: DoS" --> API
+    Admin -- "5. Mantenimiento (SSH) <br> ⚠️ T-05: Elevation of Privilege" --> BD
+    API -- "2. Consulta / Guarda <br> ⚠️ T-02: Tampering" --> BD
     API -- "3. Valida Token" --> Auth
+    
+    %% Amenaza local sobre un componente específico (Autoreferencia)
+    BD -. "⚠️ T-03: Info Disclosure" .-> BD
     
     %% Fronteras de Confianza
     subgraph Zona_Insegura ["Frontera de Internet (Insegura)"]
