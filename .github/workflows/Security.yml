@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
   schedule:
     # Se ejecuta automáticamente todos los domingos a las 00:00 UTC
-    - cron: '23 6 * * 1'
+    - cron: '23 18 * * 1'
 
 jobs:
   analyze:
