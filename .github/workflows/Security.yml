@@ -6,8 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule:
-    # Se ejecuta automáticamente todos los domingos a las 00:00 UTC
-    - cron: '*/5 * * * *'
+    - cron: '*/15 * * * *'
 
 jobs:
   analyze:
