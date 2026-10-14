@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Define el lenguaje de tu proyecto (ej: 'javascript-typescript', 'python', 'go', 'java-kotlin')
+        # Define el lenguaje de tu proyecto
         language: [ 'javascript-typescript' ]
 
     steps:
@@ -32,8 +32,8 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        # Opcional: puedes elegir "security-extended" para un análisis más profundo
-        queries: security-extended
+        # Cambiado temporalmente para ejecutar TODAS las reglas
+        queries: security-and-quality
 
     # Nota: Si usas lenguajes compilados (Java, C#, C++), aquí deberías agregar 
     # los pasos para compilar tu código (ej: run: mvn clean package).
@@ -43,10 +43,3 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{ matrix.language }}"
-
-      - name: Inicializar CodeQL
-      uses: github/codeql-action/init@v3
-      with:
-        languages: ${{ matrix.language }}
-        # Cambia esto temporalmente para ejecutar TODAS las reglas
-        queries: security-and-quality
