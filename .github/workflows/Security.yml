@@ -43,3 +43,10 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{ matrix.language }}"
+
+      - name: Inicializar CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ matrix.language }}
+        # Cambia esto temporalmente para ejecutar TODAS las reglas
+        queries: security-and-quality
