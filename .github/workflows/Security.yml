@@ -22,7 +22,7 @@ jobs:
       fail-fast: false
       matrix:
         # Define el lenguaje de tu proyecto
-        language: [ 'javascript-typescript' ]
+        language: [ 'javascript' ]
 
     steps:
     - name: Descargar el código del repositorio
